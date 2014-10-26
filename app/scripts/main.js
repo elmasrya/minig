@@ -19,28 +19,28 @@ var Goodguy = function(options) {
   this.health=100;
   switch (this.type){
     case "1":
-    attack_pt=10;
-    special_pt=20;
+    attack_pt=[5,10];
+    special_pt=[15,35];
     break;
 
     case "2":
-    attack_pt=15;
-    special_pt=25;
+    attack_pt=[5,15];
+    special_pt=[15,40];
     break;
 
     case "3":
-    attack_pt=5;
-    special_pt=30;
+    attack_pt=[3,17];
+    special_pt=[10,40];
     break;
 
   };
 
   this.attack=function(attackee) {
 
-    return attackee.health = attackee.health - attack_pt;
+    return attackee.health = attackee.health - _.random(attack_pt[0],attack_pt[1]);
     };
   this.special=function(attackee) {
-    return attackee.health = attackee.health - special_pt;
+    return attackee.health = attackee.health - _.random(special_pt[0],special_pt[1]);
     };
 
   };
@@ -67,8 +67,9 @@ $('.welcome button').on('click', function (event){
     //get ready to fight
     $('.welcome').fadeOut(500, function (){
       //set player/monster health
-        $('.ggName').prepend(player.name).find('ggHealth').text(player.health);
-        $('.bgName').prepend(monster.name)find('bgHealth').text(monster.health);
+        $('.ggName').prepend(player.name).find('.ggHealth').text(player.health).css("color","green");
+        $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
+
 
 
 
@@ -81,37 +82,60 @@ $('.welcome button').on('click', function (event){
 //1. Winner is not random
 //2. Health can be negative
 
+
 $('#fight').on('click', function (event){
-    event.preventDefault();
-    //console.log('working');
-    var attack_type=_.random(1,2);
 
-    if (attack_type===1){
-      player.attack(monster);
+    $('#fight').css("display","none");
+
+    setTimeout(function() {
+
+        var attack_type=_.random(1,2);
+
+          if (attack_type===1){
+              player.attack(monster);
+              }
+          else {
+              player.special(monster);
+              }
+
+
+        if (monster.health > 0) {
+        $('.bgHealth').text(monster.health);
+        } else {
+        $('.bgHealth').text("0");
+        $('.bgName').css("text-decoration","line-through").css("color", "red");
+        }
+
+        
+    }, 2000);
+
+    setTimeout(function() {
+
+      var attack_bad=_.random(1,2);
+
+        if (attack_bad===1){
+          monster.attack(player);
+        } else {
+          monster.special(player);
+        }
+
+
+
+
+    if (player.health > 0) {
+    $('.ggHealth').text(player.health);
+    } else{
+    $('.ggHealth').text("0");
+    $('.ggName').css("text-decoration","line-through").css("color", "red");
     }
-    //goodguy will attack the badguy
-    //badguys health will decrease
-    player.attack(monster);
-    if (monster.health > 0) {
-    $('bgHealth').text(monster.health);
-    monster.attack(player);
-  } else {
-    $('bgHealth').text("0");
-    $('#monster').css("text-decoration","line-through").css("color", "red");
-    $('bgHealth').text(monster.health);
-  }
 
-    //badguy will retaliate
-    //goodguys health will decrease
-    monster.attack(monster);
-    $('ggHealth').text(player.health);
+    $('#fight').css("display","inline");
+
+  }, 4000);
 
 
-    if (player.health <= 0) {
-      //player is dead
-    } else if (monster.health <= 0) {
-      //monster is dead
-    }
+
+
 
 
   });
