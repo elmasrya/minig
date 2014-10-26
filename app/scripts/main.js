@@ -142,18 +142,18 @@ $('#fight').on('click', function (event){
 
 
 
-//   var intval = null;
-// var pos = 0;
-//
-// $(document).ready(function() {
-//
-//
-//     intval = window.setInterval(moveBg, 40);
-// });
-//
-// function moveBg() {
-//
-//     pos--;
-//
-//     $(".fight").css({backgroundPosition: (pos *10) + "px 0px"});
-// }
+  var intval = null;
+var pos = 0;
+
+$(document).ready(function() {
+
+
+    intval = window.setInterval(moveBg, 40);
+});
+
+function moveBg() {
+
+    pos--;
+
+    $(".fight").css({backgroundPosition: (pos *10) + "px 0px"});
+}
