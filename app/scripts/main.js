@@ -132,17 +132,12 @@ $('#fight').on('click', function (event){
     $('#fight').css("display","inline");
 
   }, 4000);
-
-
-
-
-
-
   });
 
 
 
-  var intval = null;
+
+var intval = null;
 var pos = 0;
 
 $(document).ready(function() {
