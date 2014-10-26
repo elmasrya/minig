@@ -23,21 +23,34 @@
   </head>
   <body>
 
-  <div class="hero-unit">
+    <div class="container">
       <div class="welcome">
         <h3>Chose Your Character</h3>
-        <button name="1">Mario</button>
-        <button name="2">Princess Peach</button>
-        <button name="3">Toad</button>
+        <button name="1">Cop</button>
+        <button name="2">F.B.I.</button>
+        <button name="3">Marine</button>
       </div>
 
       <div class="fight">
-        <p class="ggName"><span class="ggHealth"></span></p>
-        <p>Vs</p>
-        <p class="bgName"><span class="bgHealth"></span></p>
+        <div class="leftSide">
+        <div class="ggName"><span class="ggHealth"></span></div>
+      </div>
+
+
+
+        <div class="rightSide">
+        <div class="bgName"><span class="bgHealth"></span></div>
+        <img class"armyMan" src="agentSmith.png">
+        </div>
+
+        <center class="attack">
+          <p>Vs</p>
         <button id="fight">Attack <span class="bgName"></span></button>
+      </center>
       </div>
     </div>
+
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

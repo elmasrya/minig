@@ -3,31 +3,49 @@
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // Custom Styles
-body {
-  background: #fafafa;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
-}
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  .welcome {
+
+
+.welcome {
     text-align:center;
-  }
-  .fight{
+    }
+
+.fight{
+    height:900px;
+    background: transparent url("../images/backgroundgame.png") repeat scroll 0 0;
     display:none;
-    text-align:center;
   }
-  .ggHealth, .bgHealth {
+
+.ggHealth, .bgHealth {
 
     padding-left:5px;
 
   }
+
+
+.leftSide{
+  border:solid;
+  border-width:1px;
+  float:left;
+  margin-top:200px;
+  margin-left:200px;
+}
+
+.rightSide{
+  border:solid;
+  border-width:1px;
+  float:right;
+  margin-top:200px;
+  margin-right:200px;
+}
+
+.attack{
+  display:block;
+  margin-top:500px;
+  clear:both;
+
+}
+
+.container{
+
 }

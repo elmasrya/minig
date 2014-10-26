@@ -62,10 +62,10 @@ $('.welcome button').on('click', function (event){
       type:char_type
     });
       //create instances of Badguy
-    monster = new Badguy('Bowser');
+    monster = new Badguy('Robber');
 
     //get ready to fight
-    $('.welcome').fadeOut(500, function (){
+    $('.welcome').css("display","none");
       //set player/monster health
         $('.ggName').prepend(player.name).find('.ggHealth').text(player.health).css("color","green");
         $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
@@ -74,8 +74,8 @@ $('.welcome button').on('click', function (event){
 
 
 
-        $('.fight').fadeIn();
-});
+        $('.fight').css("display","block");
+
 });
 
 //Fight Sequence
@@ -106,7 +106,7 @@ $('#fight').on('click', function (event){
         $('.bgName').css("text-decoration","line-through").css("color", "red");
         }
 
-        
+
     }, 2000);
 
     setTimeout(function() {
@@ -139,3 +139,21 @@ $('#fight').on('click', function (event){
 
 
   });
+
+
+
+//   var intval = null;
+// var pos = 0;
+//
+// $(document).ready(function() {
+//
+//
+//     intval = window.setInterval(moveBg, 40);
+// });
+//
+// function moveBg() {
+//
+//     pos--;
+//
+//     $(".fight").css({backgroundPosition: (pos *10) + "px 0px"});
+// }
