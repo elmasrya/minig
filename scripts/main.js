@@ -225,13 +225,13 @@ $(function() {
         var FPS = 30;
 
         var player = {
-          color: "#00A",
+
           x: 50,
           y: 270,
           width: 200,
           height: 180,
           draw: function() {
-            canvas.fillStyle = this.color;
+
             canvas.fillRect(this.x, this.y, this.width, this.height);
           }
         };
@@ -281,24 +281,26 @@ $(function() {
           I = I || {};
 
           I.active = true;
-          I.age =Math.floor(Math.random() * 8);
+        I.age =Math.floor(Math.random());
 
-          I.color = "#A2B";
 
-          I.x = CANVAS_WIDTH / 4 + Math.random() * CANVAS_WIDTH / 2;
+
+          I.x = 900;
           I.y = 0;
-          I.xVelocity = 0;
-          I.yVelocity = 5;
+          I.xVelocity = 1;
+          I.yVelocity = 2;
 
-          I.width = 200;
-          I.height = 200;
+          I.width = 100;
+          I.height = 100;
 
           I.inBounds = function() {
             return I.x >= 0 && I.x <= CANVAS_WIDTH &&
-              I.y >= 0 && I.y <= (CANVAS_HEIGHT-1000);
+              I.y >= 0 && I.y <= (CANVAS_HEIGHT-1100);
           };
 
-          I.sprite = Sprite("nuclearTruck");
+
+              I.sprite = Sprite("nuclearTruck");
+
 
           I.draw = function() {
             this.sprite.draw(canvas, this.x, this.y);
@@ -319,14 +321,7 @@ $(function() {
 
 
             I.active = I.active && I.inBounds();
-            if (!I.active) {
-              if(enemyDirection==0){
-                enemyDirection=1;
-                } else {
-                  enemyDirection=0;
-                }
 
-              }
 
           };
 
@@ -358,7 +353,7 @@ $(function() {
         function update() {
           if(keydown.s) {
 
-            if(frameCount==5) {
+            if(frameCount==10) {
               player.shoot();
               frameCount=0;
 
@@ -378,7 +373,7 @@ $(function() {
             player.y += 5;
           }
 
-          player.y = player.y.clamp(0, CANVAS_HEIGHT - 1000);
+          player.y = player.y.clamp(-20, CANVAS_HEIGHT - 1100);
 
           playerBullets.forEach(function(bullet) {
             bullet.update();
@@ -454,8 +449,14 @@ $(function() {
               if(collides(bullet, enemy)) {
                 enemy.explode();
                 bullet.active = false;
-                bgVal=bgVal-10;
+                bgVal=bgVal-50;    /*_.random(0,10);*/
                 $('.bgHealth').text(bgVal);
+
+                if (bgVal<=0)    {
+                    $('.winner').css("display","block");
+                    $('.fight').css("display","none");
+                };
+
               }
             });
           });
@@ -473,23 +474,20 @@ $(function() {
           // Extra Credit: Add an explosion graphic and then end the game
         };
 
-        player.sprite = Sprite("tank");
+
+        player.sprite = Sprite("armyMan");
+
 
         player.draw = function() {
           this.sprite.draw(canvas, this.x, this.y);
         };
 
+var end=document.getElementById('bgHealth');
+
+
 var Badguy = function(name) {
   this.name=name;
   this.health=100;
-  this.attack=function(attackee) {
-  return attackee.health = attackee.health -_.random(5,10);
-
-    };
-    this.special=function(attackee) {
-      return attackee.health = attackee.health -_.random(15,50);
-
-    };
   };
 
 var Goodguy = function(options) {
@@ -498,37 +496,20 @@ var Goodguy = function(options) {
   this.name=options.name;
   this.type=options.type;
   this.health=100;
-  switch (this.type){
-    case "1":
-    attack_pt=[5,10];
-    special_pt=[15,35];
-    break;
-
-    case "2":
-    attack_pt=[5,15];
-    special_pt=[15,40];
-    break;
-
-    case "3":
-    attack_pt=[3,17];
-    special_pt=[10,40];
-    break;
-
   };
 
-  this.attack=function(attackee) {
 
-    return attackee.health = attackee.health - _.random(attack_pt[0],attack_pt[1]);
-    };
-  this.special=function(attackee) {
-    return attackee.health = attackee.health - _.random(special_pt[0],special_pt[1]);
-    };
-
-  };
 //starting the game
- var goodGuy, monster;
+ var goodGuy;
+ var badguy;
+$('.hello button').on('click', function (event){
 
 
+  $('.hello').css("display","none");
+  $('.welcome').css("display","block");
+
+
+});
 
 $('.welcome button').on('click', function (event){
     event.preventDefault();
@@ -543,13 +524,13 @@ $('.welcome button').on('click', function (event){
       type:char_type
     });
       //create instances of Badguy
-    monster = new Badguy('Robber');
+    badguy = new Badguy('Health');
 
     //get ready to fight
     $('.welcome').css("display","none");
-      //set goodGuy/monster health
+      //set goodGuy/badguy health
         $('.ggName').prepend(goodGuy.name).find('.ggHealth').text(goodGuy.health).css("color","green");
-        $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
+        $('.bgName').prepend(badguy.name).find('.bgHealth').text(badguy.health).css("color","green");
 
 
 
@@ -559,63 +540,11 @@ $('.welcome button').on('click', function (event){
 
 });
 
+
+
 //Fight Sequence
 //1. Winner is not random
 //2. Health can be negative
-
-
-$('#fight').on('click', function (event){
-
-    $('#fight').css("display","none");
-
-    setTimeout(function() {
-
-        var attack_type=_.random(1,2);
-
-          if (attack_type===1){
-              goodGuy.attack(monster);
-              }
-          else {
-              goodGuy.special(monster);
-              }
-
-
-        if (monster.health > 0) {
-        $('.bgHealth').text(monster.health);
-        } else {
-        $('.bgHealth').text("0");
-        $('.bgName').css("text-decoration","line-through").css("color", "red");
-        }
-
-
-    }, 2000);
-
-    setTimeout(function() {
-
-      var attack_bad=_.random(1,2);
-
-        if (attack_bad===1){
-          monster.attack(goodGuy);
-        } else {
-          monster.special(goodGuy);
-        }
-
-
-
-
-    if (goodGuy.health > 0) {
-    $('.ggHealth').text(goodGuy.health);
-    } else{
-    $('.ggHealth').text("0");
-    $('.ggName').css("text-decoration","line-through").css("color", "red");
-    }
-
-    $('#fight').css("display","inline");
-
-  }, 4000);
-  });
-
-
 
 
 var intval = null;
