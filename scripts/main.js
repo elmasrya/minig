@@ -237,6 +237,7 @@ $(function() {
         };
 
         var bgVal=100;
+        var ggVal=100;
 
         var playerBullets = [];
 
@@ -449,7 +450,7 @@ $(function() {
               if(collides(bullet, enemy)) {
                 enemy.explode();
                 bullet.active = false;
-                bgVal=bgVal-50;    /*_.random(0,10);*/
+                bgVal=bgVal-_.random(0,10);
                 $('.bgHealth').text(bgVal);
 
                 if (bgVal<=0)    {
@@ -481,6 +482,21 @@ $(function() {
         player.draw = function() {
           this.sprite.draw(canvas, this.x, this.y);
         };
+
+
+
+                setInterval(function() {
+                  ggVal=ggVal-1;
+                  $('.ggHealth').text(ggVal);
+
+
+              if (ggVal<=0)    {
+              $('.loser').css("display","block");
+              $('.fight').css("display","none");
+                        };
+
+
+                }, 10000/FPS);
 
 var end=document.getElementById('bgHealth');
 
@@ -539,6 +555,7 @@ $('.welcome button').on('click', function (event){
         $('.fight').css("display","block");
 
 });
+
 
 
 
