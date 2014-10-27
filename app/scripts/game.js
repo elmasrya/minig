@@ -81,6 +81,7 @@
               I.sprite = Sprite("nuclearTruck");
 
 
+
           I.draw = function() {
             this.sprite.draw(canvas, this.x, this.y);
           };
