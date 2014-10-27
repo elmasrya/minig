@@ -58,6 +58,7 @@ $('.welcome button').on('click', function (event){
 
 
 
+
 //Fight Sequence
 //1. Winner is not random
 //2. Health can be negative
