@@ -133,7 +133,7 @@
         function update() {
           if(keydown.s) {
 
-            if(frameCount==10) {
+            if(frameCount==2) {
               player.shoot();
               frameCount=0;
 
