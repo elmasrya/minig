@@ -45,7 +45,7 @@ var Goodguy = function(options) {
 
   };
 //starting the game
- var player, monster;
+ var goodGuy, monster;
 
 
 
@@ -56,7 +56,7 @@ $('.welcome button').on('click', function (event){
         char_name= $(this).text();
 
 
-    player=new Goodguy({
+    goodGuy=new Goodguy({
 
       name:char_name,
       type:char_type
@@ -66,8 +66,8 @@ $('.welcome button').on('click', function (event){
 
     //get ready to fight
     $('.welcome').css("display","none");
-      //set player/monster health
-        $('.ggName').prepend(player.name).find('.ggHealth').text(player.health).css("color","green");
+      //set goodGuy/monster health
+        $('.ggName').prepend(goodGuy.name).find('.ggHealth').text(goodGuy.health).css("color","green");
         $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
 
 
@@ -92,10 +92,10 @@ $('#fight').on('click', function (event){
         var attack_type=_.random(1,2);
 
           if (attack_type===1){
-              player.attack(monster);
+              goodGuy.attack(monster);
               }
           else {
-              player.special(monster);
+              goodGuy.special(monster);
               }
 
 
@@ -114,16 +114,16 @@ $('#fight').on('click', function (event){
       var attack_bad=_.random(1,2);
 
         if (attack_bad===1){
-          monster.attack(player);
+          monster.attack(goodGuy);
         } else {
-          monster.special(player);
+          monster.special(goodGuy);
         }
 
 
 
 
-    if (player.health > 0) {
-    $('.ggHealth').text(player.health);
+    if (goodGuy.health > 0) {
+    $('.ggHealth').text(goodGuy.health);
     } else{
     $('.ggHealth').text("0");
     $('.ggName').css("text-decoration","line-through").css("color", "red");
