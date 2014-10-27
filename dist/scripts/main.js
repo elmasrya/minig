@@ -477,7 +477,7 @@ $(function() {
         };
 
 
-        player.sprite = Sprite("armyMan");
+        player.sprite = Sprite("tank");
 
 
         player.draw = function() {
