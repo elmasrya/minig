@@ -4,21 +4,35 @@
 
 // Custom Styles
 
+.hello {
+    margin-top:-50px;
+    background-color:black;
+    height:1300px;
+    width:1300px;
+    text-align:center;
+    }
 
 
 .welcome {
+    height:900px;
+    background-image: url("../images/flag.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display:none;
     text-align:center;
     }
 
 .fight{
     height:900px;
+    width:100%;
     background: transparent url("../images/backgroundgame.png") repeat scroll 0 0;
     display:none;
   }
 
-.ggHealth, .bgHealth {
+.ggHealth{
 
-    padding-left:5px;
+}
+.bgHealth {
 
   }
 
@@ -26,21 +40,118 @@
 .leftSide{
 
   float:left;
-  margin-top:200px;
+  margin-top:100px;
   margin-left:0px;
+  border:solid;
+  border-width:1px;
+  border-radius:3px;
+  background-color:white;
+  padding-left:5px;
 }
 
 .rightSide{
+  float:right;
+  margin-top:100px;
+  margin-right:0px;
   border:solid;
   border-width:1px;
-  float:right;
-  margin-top:200px;
-  margin-right:0px;
+  border-radius:3px;
+  background-color:white;
 }
 
-.attack{
-  display:block;
-  margin-top:500px;
-  clear:both;
 
+
+.pics{
+  margin-top:10px;
+  height:220px;
+  width:240px;
+  border-radius:50px;
+}
+
+.btnName{
+  color:green;
+  text-decoration:underline;
+  font-weight:bold;
+}
+
+.btn{
+  margin:30px;
+  border-radius:20px;
+}
+
+.heading{
+  padding-top:50px;
+  color:gray;
+
+}
+
+
+.tagLine{
+  color:red;
+
+}
+
+
+.start{
+  color:rgb(143, 253, 66);
+
+}
+
+.bk{
+  margin-left:300px;
+  margin-top:50px;
+  width:700px;
+  border:solid;
+  border-width:3px;
+  border-radius:10px;
+  color:red;
+}
+
+.bkHeading{
+  font-size:30px;
+  text-decoration:underline;
+}
+
+.intel{
+  font-size:20px;
+
+}
+
+.winner{
+  height:700px;
+  background-image: url("../images/liberty.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color:white;
+  display:none;
+}
+
+.wtitle{
+  padding-top:70px;
+  padding-bottom:20px;
+  font-size:40px;
+}
+
+.wSub{
+  font-size:20px;
+}
+
+.loser{
+  height:700px;
+  background-image: url("../images/doom.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color:white;
+  display:none;
+
+}
+
+.ltitle{
+  padding-top:70px;
+  padding-bottom:20px;
+  font-size:40px;
+}
+
+.lSub{
+  font-size:20px;
 }

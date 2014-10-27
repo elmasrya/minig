@@ -3,13 +3,13 @@
         var FPS = 30;
 
         var player = {
-          color: "#00A",
+
           x: 50,
           y: 270,
           width: 200,
           height: 180,
           draw: function() {
-            canvas.fillStyle = this.color;
+
             canvas.fillRect(this.x, this.y, this.width, this.height);
           }
         };
@@ -59,24 +59,26 @@
           I = I || {};
 
           I.active = true;
-          I.age =Math.floor(Math.random() * 8);
+        I.age =Math.floor(Math.random());
 
-          I.color = "#A2B";
 
-          I.x = CANVAS_WIDTH / 4 + Math.random() * CANVAS_WIDTH / 2;
+
+          I.x = 900;
           I.y = 0;
-          I.xVelocity = 0;
-          I.yVelocity = 5;
+          I.xVelocity = 1;
+          I.yVelocity = 2;
 
-          I.width = 200;
-          I.height = 200;
+          I.width = 100;
+          I.height = 100;
 
           I.inBounds = function() {
             return I.x >= 0 && I.x <= CANVAS_WIDTH &&
-              I.y >= 0 && I.y <= (CANVAS_HEIGHT-1000);
+              I.y >= 0 && I.y <= (CANVAS_HEIGHT-1100);
           };
 
-          I.sprite = Sprite("nuclearTruck");
+
+              I.sprite = Sprite("nuclearTruck");
+
 
           I.draw = function() {
             this.sprite.draw(canvas, this.x, this.y);
@@ -97,14 +99,7 @@
 
 
             I.active = I.active && I.inBounds();
-            if (!I.active) {
-              if(enemyDirection==0){
-                enemyDirection=1;
-                } else {
-                  enemyDirection=0;
-                }
 
-              }
 
           };
 
@@ -136,7 +131,7 @@
         function update() {
           if(keydown.s) {
 
-            if(frameCount==5) {
+            if(frameCount==10) {
               player.shoot();
               frameCount=0;
 
@@ -156,7 +151,7 @@
             player.y += 5;
           }
 
-          player.y = player.y.clamp(0, CANVAS_HEIGHT - 1000);
+          player.y = player.y.clamp(-20, CANVAS_HEIGHT - 1100);
 
           playerBullets.forEach(function(bullet) {
             bullet.update();
@@ -232,8 +227,14 @@
               if(collides(bullet, enemy)) {
                 enemy.explode();
                 bullet.active = false;
-                bgVal=bgVal-10;
+                bgVal=bgVal-50;    /*_.random(0,10);*/
                 $('.bgHealth').text(bgVal);
+
+                if (bgVal<=0)    {
+                    $('.winner').css("display","block");
+                    $('.fight').css("display","none");
+                };
+
               }
             });
           });
@@ -251,7 +252,9 @@
           // Extra Credit: Add an explosion graphic and then end the game
         };
 
-        player.sprite = Sprite("tank");
+
+        player.sprite = Sprite("armyMan");
+
 
         player.draw = function() {
           this.sprite.draw(canvas, this.x, this.y);

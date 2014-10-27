@@ -1,14 +1,9 @@
+var end=document.getElementById('bgHealth');
+
+
 var Badguy = function(name) {
   this.name=name;
   this.health=100;
-  this.attack=function(attackee) {
-  return attackee.health = attackee.health -_.random(5,10);
-
-    };
-    this.special=function(attackee) {
-      return attackee.health = attackee.health -_.random(15,50);
-
-    };
   };
 
 var Goodguy = function(options) {
@@ -17,37 +12,20 @@ var Goodguy = function(options) {
   this.name=options.name;
   this.type=options.type;
   this.health=100;
-  switch (this.type){
-    case "1":
-    attack_pt=[5,10];
-    special_pt=[15,35];
-    break;
-
-    case "2":
-    attack_pt=[5,15];
-    special_pt=[15,40];
-    break;
-
-    case "3":
-    attack_pt=[3,17];
-    special_pt=[10,40];
-    break;
-
   };
 
-  this.attack=function(attackee) {
 
-    return attackee.health = attackee.health - _.random(attack_pt[0],attack_pt[1]);
-    };
-  this.special=function(attackee) {
-    return attackee.health = attackee.health - _.random(special_pt[0],special_pt[1]);
-    };
-
-  };
 //starting the game
- var goodGuy, monster;
+ var goodGuy;
+ var badguy;
+$('.hello button').on('click', function (event){
 
 
+  $('.hello').css("display","none");
+  $('.welcome').css("display","block");
+
+
+});
 
 $('.welcome button').on('click', function (event){
     event.preventDefault();
@@ -62,13 +40,13 @@ $('.welcome button').on('click', function (event){
       type:char_type
     });
       //create instances of Badguy
-    monster = new Badguy('Robber');
+    badguy = new Badguy('Health');
 
     //get ready to fight
     $('.welcome').css("display","none");
-      //set goodGuy/monster health
+      //set goodGuy/badguy health
         $('.ggName').prepend(goodGuy.name).find('.ggHealth').text(goodGuy.health).css("color","green");
-        $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
+        $('.bgName').prepend(badguy.name).find('.bgHealth').text(badguy.health).css("color","green");
 
 
 
@@ -78,63 +56,11 @@ $('.welcome button').on('click', function (event){
 
 });
 
+
+
 //Fight Sequence
 //1. Winner is not random
 //2. Health can be negative
-
-
-$('#fight').on('click', function (event){
-
-    $('#fight').css("display","none");
-
-    setTimeout(function() {
-
-        var attack_type=_.random(1,2);
-
-          if (attack_type===1){
-              goodGuy.attack(monster);
-              }
-          else {
-              goodGuy.special(monster);
-              }
-
-
-        if (monster.health > 0) {
-        $('.bgHealth').text(monster.health);
-        } else {
-        $('.bgHealth').text("0");
-        $('.bgName').css("text-decoration","line-through").css("color", "red");
-        }
-
-
-    }, 2000);
-
-    setTimeout(function() {
-
-      var attack_bad=_.random(1,2);
-
-        if (attack_bad===1){
-          monster.attack(goodGuy);
-        } else {
-          monster.special(goodGuy);
-        }
-
-
-
-
-    if (goodGuy.health > 0) {
-    $('.ggHealth').text(goodGuy.health);
-    } else{
-    $('.ggHealth').text("0");
-    $('.ggName').css("text-decoration","line-through").css("color", "red");
-    }
-
-    $('#fight').css("display","inline");
-
-  }, 4000);
-  });
-
-
 
 
 var intval = null;
