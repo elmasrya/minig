@@ -235,6 +235,7 @@
                 if (bgVal<=0)    {
                     $('.winner').css("display","block");
                     $('.fight').css("display","none");
+                    $('.loser').css("display","none");
                 };
 
               }
@@ -269,9 +270,10 @@
                   $('.ggHealth').text(ggVal);
 
 
-              if (ggVal<=0)    {
+              if (ggVal===0 && bgVal > 0)    {
               $('.loser').css("display","block");
               $('.fight').css("display","none");
+              $('.winner').css("display","none");
                         };
 
 

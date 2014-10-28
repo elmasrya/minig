@@ -3,23 +3,41 @@
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // Custom Styles
+body{
+  height:1300px;
+  width:1300px;
+
+}
+.container{
+  height:1300px;
+  width:1300px;
+  }
 
 .hello {
     margin-top:-50px;
+    margin-right:-100px;
     background-color:black;
     height:1300px;
-    width:1300px;
+    width:1440px;
     text-align:center;
     }
 
 
 .welcome {
-    height:900px;
+    margin-top:-50px;
+    height:1300px;
+    width:1440px;
     background-image: url("../images/flag.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display:none;
     text-align:center;
+    }
+
+    .choose{
+      padding-top:20px;
+      font-size:50px;
+      color:rgb(0, 152, 255);
     }
 
 .fight{
@@ -106,7 +124,7 @@
 }
 
 .bk{
-  margin-left:300px;
+  margin-left:350px;
   margin-top:50px;
   width:700px;
   border:solid;
@@ -122,11 +140,14 @@
 
 .intel{
   font-size:20px;
-
-}
+  text-align:justify;
+  padding:  10px;
+  line-height:30px;
+  }
 
 .winner{
-  height:700px;
+  height:900px;
+  width:1440px;
   background-image: url("../images/liberty.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -145,7 +166,8 @@
 }
 
 .loser{
-  height:700px;
+  height:900px;
+  width:1440px;
   background-image: url("../images/doom.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
